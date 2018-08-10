@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title></title>
+    <style>
+      /*@keyframes rowup {
+        0% {
+          -webkit-transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0);
+        }
+        100% {
+          -webkit-transform: translate3d(0, -300px, 0);
+          transform: translate3d(0, -300px, 0);
+          display: none;
+        }
+      }
+      
+      .list {
+        width: 300px;
+        border: 1px solid #999;
+        margin: 20px auto;
+        position: relative;
+        height: 200px;
+        overflow: hidden;
+      }
+      
+      .list .rowup {
+        -webkit-animation: 4s rowup linear infinite normal;
+        animation: 4s rowup linear infinite normal;
+        position: relative;
+      }
+      .item {
+        height:200px;
+      }*/
+     html,body {
+       margin: 0;
+       paddng: 0;
+     }
+     .container {
+       width:100vw;
+       height:300px;
+       position:relative;
+       display:flex;
+       overflow:hidden;
+       left:0;
+     }
+     .item {
+       position:absolute;
+       top: 0;
+       width:100vw;
+     }
+     .slide {
+       left: 100vw;
+     }
+    </style>
+  </head>
+
+  <body>
+    <div class="list">
+      <div class="cc rowup">
+        <button onClick="left()">像左</button>
+        <button onClick="right()">像右</button>
+        <div class="container" id="container">
+          <div class="item" id="item" style="background:#000000;">1- 121233fffffr国家认可更健康进口价格困扰</div>
+        </div>
+      </div>
+    </div>
+    <script>
+      function left() {
+        var el = document.getElementById('container')
+        el.className = 'container slide'
+        el.style.transition="left 2s linear";
+        setTimeout(function(){
+          el.className = 'container'
+          el.style.transition="left 0s linear";
+        },2000)
+      }
+    </script>
+  </body>
+
+</html>

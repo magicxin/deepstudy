@@ -1,0 +1,19 @@
+{
+  "name": "webpackfour",
+  "version": "0.0.1",
+  "description": "webpack config",
+  "main": "main",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack"
+  },
+  "keywords": [
+    "webpack"
+  ],
+  "author": "magic",
+  "license": "ISC",
+  "devDependencies": {
+    "webpack": "^4.16.5",
+    "webpack-cli": "^3.1.0"
+  }
+}

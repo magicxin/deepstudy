@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+      @keyframes rowup {
+        0% {
+          -webkit-transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0);
+        }
+        100% {
+          -webkit-transform: translate3d(0, -400px, 0);
+          transform: translate3d(4, -400px, 0);
+          display: none;
+        }
+      }
+      
+      .list {
+        width: 300px;
+        border: 1px solid #999;
+        margin: 20px auto;
+        position: relative;
+        height: 200px;
+        overflow: hidden;
+      }
+      
+      .list .rowup {
+        -webkit-animation: 4s rowup linear infinite normal;
+        animation: 4s rowup linear infinite normal;
+        position: relative;
+      }
+      .item {
+        height:200px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="list">
+      <div class="cc rowup">
+        <div class="item" style="background:#000000;">1- 121233fffffr国家认可更健康进口价格困扰</div>
+        <div class="item" style="background:#9FA8EF;">2- 3123233</div>
+        <div class="item" style="background:#EF9FB1;">3- 个人口结构俄跨入国际科技馆客人感觉</div>
+      </div>
+    </div>
+  </body>
+
+</html>

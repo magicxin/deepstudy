@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title></title>
+    <style>
+      .contain {
+        position: relative;
+        margin: auto;
+        width: 600px;
+        height: 200px;
+        text-align: center;
+        font-family: Arial;
+        color: #FFF;
+        overflow: hidden;
+      }
+      
+      .contain ul {
+        margin: 10px 0;
+        padding: 0;
+        width: 1800px;
+        transition: all 0.5s;
+      }
+      
+      .contain li {
+        float: left;
+        width: 600px;
+        height: 200px;
+        list-style: none;
+        line-height: 200px;
+        font-size: 36px;
+      }
+      
+      .sildeInput-1 {
+        background: #9fa8ef;
+      }
+      
+      .sildeInput-2 {
+        background: #ef9fb1;
+      }
+      
+      .sildeInput-3 {
+        background: #9fefc3;
+      }
+      
+      .label1 {
+        position: absolute;
+        bottom: 10px;
+        left: 0px;
+        width: 20px;
+        height: 20px;
+        margin: 0 10px;
+        line-height: 20px;
+        color: #FFF;
+        background: #000;
+        cursor: pointer;
+      }
+      /*ç”¨äºŽè°ƒæ•´å•é€‰æ¡†çš„å±žæ€§ä»¥åŠä½ç½®*/
+      
+      .label2 {
+        position: absolute;
+        bottom: 10px;
+        left: 30px;
+        width: 20px;
+        height: 20px;
+        margin: 0 10px;
+        line-height: 20px;
+        color: #FFF;
+        background: #000;
+        cursor: pointer;
+      }
+      /*ç”¨äºŽè°ƒæ•´å•é€‰æ¡†çš„å±žæ€§ä»¥åŠä½ç½®*/
+      
+      .label3 {
+        position: absolute;
+        bottom: 10px;
+        left: 60px;
+        width: 20px;
+        height: 20px;
+        margin: 0 10px;
+        line-height: 20px;
+        color: #FFF;
+        background: #000;
+        cursor: pointer;
+      }
+      /*ç”¨äºŽè°ƒæ•´å•é€‰æ¡†çš„å±žæ€§ä»¥åŠä½ç½®*/
+      
+      #Input1:checked~ul {
+        margin-left: 0;
+      }
+      
+      #Input1:checked~.label1 {
+        background: #535353;
+      }
+      
+      #Input2:checked~ul {
+        margin-left: -600px;
+      }
+      
+      #Input2:checked~.label2 {
+        background: #535353;
+      }
+      
+      #Input3:checked~ul {
+        margin-left: -1200px;
+      }
+      
+      #Input3:checked~.label3 {
+        background: #535353;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="contain">
+      <input type="radio" name="sildeInput" value="0" id="Input1" hidden>
+      <label class="label1" for="Input1">1</label>
+      <input type="radio" name="sildeInput" value="1" id="Input2" hidden>
+      <label class="label2" for="Input2">2</label>
+      <input type="radio" name="sildeInput" value="1" id="Input3" hidden>
+      <label class="label3" for="Input3">3</label>
+      <ul>
+        <li class="sildeInput-1">one-点击切换</li>
+        <li class="sildeInput-2">two-点击切换</li>
+        <li class="sildeInput-3">three-点击切换</li>
+      </ul>
+    </div>
+
+  </body>
+
+</html>

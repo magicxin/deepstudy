@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+		<title></title>
+		<style>
+		  .item {
+		    position: relative;
+		    padding:14px;
+		    background: #ececec;
+		  }
+		  .line {
+		    position:absolute;
+		    top: 0;
+		    left: 0;
+		    width:4px;
+		    background: #000;
+		  }
+		</style>
+	</head>
+	<body>
+	  <div id="content">
+	    <div class="item" id="line1">1
+        <div class="line"></div>
+      </div>
+      <div class="item" id="line2">2
+        <div class="line"></div>
+      </div>
+      <div class="item" id="line3">3
+        <div class="line"></div>
+      </div>
+	  </div>
+	  <script>
+	    document.getElementById('content').addEventListener('click',function(e){
+	      var els = Array.prototype.slice.call(document.getElementsByClassName('line'))
+	      els.forEach(function(item,index){
+	        item.style.height = '0px'
+	      })
+	      if(e.target.id.indexOf('line') > -1) {
+	        var top = '0px'
+	        e.target.children[0].style.height = e.target.offsetHeight + 'px'
+	        e.target.children[0].style.transform = `translateY(${top})`
+	        console.log(e.target.children[0].offsetHeight)
+	        e.target.children[0].style.transitionDuration = '0.2s'
+	      }
+	    },false)
+	  </script>
+	</body>
+</html>
