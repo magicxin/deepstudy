@@ -1,0 +1,86 @@
+.jc-kalendar {
+    font-size: $global-font-24;
+    color: $global-color-base-light;
+    overflow: hidden;
+    .slider {
+        position:relative;
+        left:0;
+        .kalender-view-pre {
+            position:absolute;
+            top:0;
+            left:-100vw;
+        }
+//      .kalender-view-own {
+//          position:absolute;
+//          left:0;
+//      }
+        .kalender-view-next {
+            position:absolute;
+            top:0;
+            left:100vw;
+        }
+    }
+    .toolbar {
+        display:flex;
+        .lay-left,.lay-right,.date {
+            display:flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0 0.373333rem;
+        }
+        .lay-left {
+            flex: 1 1 0;
+        }
+        .lay-right {
+            flex: 1 1 0;
+            color: $global-color-base;
+        }
+        .date {
+            flex: 3 1 0;
+            display:flex;
+            font-size:$global-font-30;
+            i {
+                font-weight: bold;
+                padding:0.373333rem;
+            }
+        }
+    }
+    .back-grey {
+        width:100vw;
+        height:0.266666rem;
+        background:$global-color-lightgrey;
+    }
+    .datetable {
+        .week-container {
+            display:flex;
+        }
+        .weekname,.day {
+            position:relative;
+            display:flex;
+            flex: 1 1 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height:14.2vw;
+            font-size:$global-font-30;
+            .point {
+                position: absolute;
+                top:64%;
+                left: 50%;
+                transform: translate(-50% , 50%);
+                width: 0.16rem;
+                height:0.16rem;
+                border-radius: 50%;
+                background: $global-background-base;
+            }
+        }
+        .check {
+            color:#fff;
+            background: $global-background-base;
+            border-radius: 50%;
+        }
+        .week {
+            display:flex;
+        }
+    }
+}
