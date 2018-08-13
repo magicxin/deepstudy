@@ -1,0 +1,55 @@
+.treelist {
+    height: calc(100vh - 1.173333rem);
+    display:flex;
+    overflow: hidden;
+    .tree {
+      position: relative;
+      height:100%;
+      flex: 1 1 0;
+      background-color: $global-color-lightgrey;
+      font-size: $global-font-28;
+      overflow: scroll;
+      .item {
+          display: flex;
+          justify-content: center;
+          padding: .37rem;
+          text-align: center;
+          color:$global-color-darkgrey;
+          border-right: 0.013333rem solid $global-border-base;
+      }
+      .line {
+          position:absolute;
+          top:0;
+          left:0;
+          border-left: 0.133333rem solid $global-background-base;
+              
+        }
+      .select {
+          background-color: #fff;
+      }
+    }
+    .content {
+      height:100%;
+      flex: 2 1 0;
+      font-size: $global-font-24;
+      color: $global-color-darkgrey;
+      padding:0 .5rem;
+      overflow: scroll;
+      .title {
+          font-weight: bold;
+          font-size: $global-font-32;
+          color: $global-color-darkgrey;
+          padding: .5rem 0;
+      }
+      .tutorials {
+          display:flex;
+          flex-wrap: wrap;
+          .tutorial {
+              padding: .25rem;
+              margin:0 .25rem .25rem 0;
+              border-radius: 1rem;
+              border: 0.023333rem solid $global-border-base;
+          }
+      }
+    }
+  }
