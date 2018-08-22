@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+		<title>svg</title>
+		<style>
+		  .container {
+		    display:inline-block;
+		    padding:5px;
+		    background:rgba(0, 0, 0, .5);
+		    border-radius: 5px;
+        border: 3px solid transparent;
+		  }
+		  svg {
+		    animation-duration: 2s;
+		  }
+		  circle {
+		    stroke: #fff;
+		    stroke-width: 3;
+        stroke-linecap: round;
+        animation: jc-circular 1.5s ease-in-out infinite;
+		  }
+		  .spinner {
+		    width:40px;
+		    height:40px;
+		    display: inline-block;
+        box-sizing: border-box;
+		    animation: jc-rotate 0.8s linear infinite;
+		    /*border-radius: 100%;
+        border: 3px solid transparent;*/
+		  }
+		  @keyframes jc-rotate {
+        from {
+          transform: rotate(0deg);
+        }
+      
+        to {
+          transform: rotate(360deg);
+        }
+      }
+      @keyframes jc-circular {
+        0% {
+          stroke-dasharray: 1, 200;
+          stroke-dashoffset: 0;
+        }
+      
+        50% {
+          stroke-dasharray: 90, 150;
+          stroke-dashoffset: -40;
+        }
+      
+        100% {
+          stroke-dasharray: 90, 150;
+          stroke-dashoffset: -120;
+        }
+      }
+		</style>
+	</head>
+	<body>
+	  <div id="app">
+      <div class="container">
+        <span class="spinner">
+        <svg width="40" height="40" viewBox="0 0 40 40">
+            <circle cx="20" cy="20" r="15" fill="none"/>
+        </svg>
+        </span>
+      </div>
+	  </div>
+	  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+	  <script>
+	    new Vue({
+        el: '#app'
+      });
+     
+	  </script>
+    
+	</body>
+</html>
