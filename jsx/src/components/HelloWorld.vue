@@ -1,13 +1,16 @@
 <template>
   <div class="hello">
     <jsx-demo>
-      <div>111</div>
+      <div class="content">
+       <img v-lazy="logo"/>
+      </div>
     </jsx-demo>
   </div>
 </template>
 
 <script>
   import Vue from 'vue'
+  import logo from '../assets/logo.png'
   Vue.component('jsx-demo', {
   render: function (createElement) {
     return createElement('div',this.$slots.default)
@@ -22,6 +25,11 @@
   
 export default {
   name: 'HelloWorld',
+  data() {
+    return {
+      logo
+    }
+  },
   props: {
     msg: String
   }
@@ -43,5 +51,17 @@ li {
 }
 a {
   color: #42b983;
+}
+.content {
+  width:60px;
+  text-align: center;
+  background:#ececec;
+}
+img {
+  width:100%;
+}
+img[lazy=loading] {
+  width:20px;
+  height:60px;
 }
 </style>
