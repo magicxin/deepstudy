@@ -58,7 +58,7 @@
     },
     created() {
       let arr = []
-      recursion.getChildById(6,recursion.sortById(this.dept),arr)
+      arr = recursion.getChildById(6,recursion.sortById(this.dept))
       console.log(arr)
     },
     methods: {

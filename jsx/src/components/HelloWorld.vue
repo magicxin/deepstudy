@@ -22,7 +22,7 @@
 //  }
 //}
 })
-  
+import test from './test' 
 export default {
   name: 'HelloWorld',
   data() {
@@ -32,6 +32,9 @@ export default {
   },
   props: {
     msg: String
+  },
+  created() {
+    test()
   }
 }
 </script>

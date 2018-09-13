@@ -1,13 +1,14 @@
-function getChildById(id, arr, check) {
+let check = []
+function getChildById(id, arr) {
   if(!arr[id]) {
     return 
   } else {
     for(let t of arr[id]) {
       getChildById(t.dept,arr)
-      console.log(check)
       check.push(t)
     }
   }
+  return check
 }
 
 function sortById(arr) {
