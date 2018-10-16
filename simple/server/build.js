@@ -1,6 +1,6 @@
 'use strict'
 const webpack = require('webpack')
-const config = require('./config/webpack.prod')
+const config = require('./webpack.prod')
 process.env.NODE_ENV = 'production'
 
 webpack(config, (err, stats) => {
