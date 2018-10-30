@@ -38,9 +38,11 @@
 	  <script src="./dist/study.js"></script>
 	  <script>
 	    new Vue({
-        el: '#app'
+        el: '#app',
+        mounted() {
+          console.log(this)
+        }
       });
-     
 	  </script>
     
 	</body>

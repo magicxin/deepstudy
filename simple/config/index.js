@@ -3,9 +3,9 @@ const path = require('path')
 
 module.exports = {
   dev: {
-    host: 'localhost',
+    host: '0.0.0.0',
     port: 8080,
-    autoOpenBrowser: true
+    autoOpenBrowser: false
   },
   build: {
     
