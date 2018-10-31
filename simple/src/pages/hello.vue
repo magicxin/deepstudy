@@ -5,6 +5,7 @@
 </template>
 
 <script>
+import image from 'assets/toutiao.png'
 export default {
   name: 'hello'
 }

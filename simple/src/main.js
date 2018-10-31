@@ -1,7 +1,8 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
-
+import 'css/reset.css'
+import 'css/font/fontface.css'
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
