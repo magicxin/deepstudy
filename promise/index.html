@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+		<title></title>
+		<style>
+		  
+		</style>
+	</head>
+	<body>
+	  <script src="./promise.js"></script>
+	  <script src="./es6-promise.js"></script>
+	  <script>
+//	    var getName = function() {
+//	      return new MyPromise((resolve,reject)=>{
+//	        setTimeout(()=>{
+//	          resolve({
+//	            name:'magix'
+//	          })
+//	        },1000)
+//	      })
+//	    }
+//	    getName().then(res=>{
+//	      console.log(res.name)
+//	    })
+	    var getName = function() {
+        return new ES6Promise((resolve,reject)=>{
+          setTimeout(()=>{
+            resolve({
+              name:'magix'
+            })
+          },1000)
+        })
+      }
+      getName().then(res=>{
+        console.log(res.name)
+      })
+	  </script>
+	</body>
+</html>
