@@ -39,6 +39,7 @@ var vertxNext = void 0;
 var customSchedulerFn = void 0;
 
 var asap = function asap(callback, arg) {
+//debugger
   queue[len] = callback;
   queue[len + 1] = arg;
   len += 2;
@@ -312,6 +313,7 @@ function handleMaybeThenable(promise, maybeThenable, then$$1) {
       reject(promise, TRY_CATCH_ERROR.error);
       TRY_CATCH_ERROR.error = null;
     } else if (then$$1 === undefined) {
+//    debugger
       fulfill(promise, maybeThenable);
     } else if (isFunction(then$$1)) {
       handleForeignThenable(promise, maybeThenable, then$$1);
@@ -325,6 +327,7 @@ function resolve(promise, value) {
   if (promise === value) {
     reject(promise, selfFulfillment());
   } else if (objectOrFunction(value)) {
+//  debugger
     handleMaybeThenable(promise, value, getThen(value));
   } else {
     fulfill(promise, value);
@@ -366,13 +369,12 @@ function subscribe(parent, child, onFulfillment, onRejection) {
   var _subscribers = parent._subscribers;
   var length = _subscribers.length;
 
-
+  
   parent._onerror = null;
 
   _subscribers[length] = child;
   _subscribers[length + FULFILLED] = onFulfillment;
   _subscribers[length + REJECTED] = onRejection;
-
   if (length === 0 && parent._state) {
     asap(publish, parent);
   }
@@ -456,7 +458,7 @@ function invokeCallback(settled, promise, callback, detail) {
 function initializePromise(promise, resolver) {
   try {
     resolver(function resolvePromise(value) {
-      console.log(value)
+//    debugger
       resolve(promise, value);
     }, function rejectPromise(reason) {
       reject(promise, reason);
@@ -872,7 +874,6 @@ var Promise$1 = function () {
 
     if (noop !== resolver) {
       typeof resolver !== 'function' && needsResolver();
-      console.log(this)
       this instanceof Promise ? initializePromise(this, resolver) : needsNew();
     }
   }

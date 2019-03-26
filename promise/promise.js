@@ -43,10 +43,15 @@ var PENDGIN = '0'
 var FULFILLED = '1'
 var REJECTED = '2'
 var queue = []
+// 定义一个构造函数
 function MyPromise(excutor) {
+  // 初始化状态为等待态
   this.state = PENDGIN
+  // 初始化等待处理的值，这个值可以是 thenable Promise 或一个实际值
   this.value = null
-  excutor(this.resolve,this.reject)
+  setTimeout(()=>{
+    excutor(this.resolve,this.reject)
+  },0)
 }
 MyPromise.prototype = {
   then(onFulfilled,onRejected) {

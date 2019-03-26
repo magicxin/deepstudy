@@ -10,32 +10,93 @@
 		</style>
 	</head>
 	<body>
-	  <script src="./promise.js"></script>
+	  <script src="./myPromise.js"></script>
 	  <script src="./es6-promise.js"></script>
 	  <script>
-//	    var getName = function() {
-//	      return new MyPromise((resolve,reject)=>{
-//	        setTimeout(()=>{
-//	          resolve({
-//	            name:'magix'
-//	          })
-//	        },1000)
-//	      })
-//	    }
-//	    getName().then(res=>{
-//	      console.log(res.name)
-//	    })
 	    var getName = function() {
+	      return new MyPromise((resolve,reject)=>{
+	        setTimeout(()=>{
+	          resolve({
+	            name:'magix'
+	          })
+	        },1000)
+	      })
+	    }
+	    getName().then(res=>{
+	      console.log(res.name)
+	    })
+//	    ES6Promise.bind(Object)({name:'aaa'})
+//	    var getName = function() {
+//      return new ES6Promise({name:'aaa'})
+//    }
+//	    getName().then(res=>{
+//      console.log(res.name)
+//    })
+//	    var getName = function() {
+//      return new ES6Promise((resolve,reject)=>{
+//        setTimeout(()=>{
+//          resolve({
+//            name:'magix'
+//          })
+//        },1000)
+//      })
+//    }
+//    getName().then(res=>{
+//      console.log(res.name)
+//    })
+      
+//    let promise1 = new ES6Promise((resolve,reject)=>{
+//      setTimeout(()=>{
+//          resolve({
+//            name:'magix'
+//          })
+//        },1000)
+//    })
+//    let promise2 = new ES6Promise((resolve,reject)=>{
+//      setTimeout(()=>{
+//          resolve({
+//            name:'ella'
+//          })
+//        },1000)
+//    })
+//    let promise3 = new ES6Promise((resolve,reject)=>{
+//      setTimeout(()=>{
+//          resolve({
+//            name:'matin'
+//          })
+//        },1000)
+//    })
+//    promise1.then(res=>{
+//      console.log(res)
+//      return promise2
+//    }).then(res=>{
+//      console.log(res)
+//      return promise3
+//    }).then(res=>{
+//      console.log(res)
+//    })
+//    
+      let promise4 = function() {
         return new ES6Promise((resolve,reject)=>{
           setTimeout(()=>{
             resolve({
-              name:'magix'
+              name:'matin'
             })
           },1000)
         })
       }
-      getName().then(res=>{
-        console.log(res.name)
+      
+      let promise5 = function() {
+        return new ES6Promise((resolve,reject)=>{
+          setTimeout(()=>{
+            resolve({
+              name:'magic'
+            })
+          },1000)
+        })
+      }
+      promise4().then(promise5).then(res=>{
+        console.log(res)
       })
 	  </script>
 	</body>
