@@ -1,74 +1,66 @@
-'use strict'
-var PROMISE_ID = Math.random().toString(36).substr(2)
+/**'use strict'
+
+var PENDING = void 0
 var FULFILLED = 1
 var REJECTED = 2
-// Promise 构造函数
+// 构造函数
 function MyPromise(excutor) {
-  // 当前状态 Pending fulfilled reject 返回结果 thenable promise value
-  this._result = this._state = void 0
-  this._subscribers = []
-  this.queue = []
-  // console.log(this.constructor) 需要打印出 MyPromise 所以不能更改 prototype
-  // 初始化
-  initialize(this,excutor)
+  // 初始化状态和返回值
+  this._state = this.result = void 0
+  // 初始化订阅者
+  this.subscribers = []
 }
 
-MyPromise.prototype.then = function(onfulFilled,onReject) {
-  var parent = this
-  var child = new this.constructor(noop)
-  var _state = parent._state
+MyPromise.prototype.then = function(onFulfilled,onRejected) {
+  var _state = this._state
+  var child = new this.constructor()
+  // 如果状态是 fulfilled 或 rejected
   if(_state) {
-    
-  }else {
-    subscribe(parent,child,onfulFilled,onReject)
+    asap()
+  }else {// 如果状态是 pending
+    subscribe()
   }
+  // 返回一个promise 保证链式调用
   return child
 }
-// 预处理函数
-function initialize(promise,excutor) {
-  try {
-    excutor(function(value) {
-      resolve(promise,value)
-    },function(reason) {
-      reject(promise,reason)
-    })
-  } catch (e) {
-    reject(promise,e)
-  }
+
+// 订阅
+function subscribe() {
+  
+}
+
+// 发布
+function publish() {
+  
+}
+
+// 尽快执行
+function asap() {
+  
+}**/
+
+// 执行传入的参数
+var PENDING = void 0
+var FULFILLED = void 1
+var REJECTED = void 2
+
+function MyPromise(excutor) {
+  this._state = this._result = void 0
+  excutor(function(value) {
+    resolve(this,value)
+  },function(reson) {})
+}
+
+MyPromise.prototype.then = function(onfulfilled,onrejected) {
+  console.log(this)
+  onfulfilled(this._result)
 }
 
 function resolve(promise,value) {
-  console.log(promise)
-}
-
-function reject(value) {
-  
-}
-// 为当前 Promise 设置一个 Id
-var id = 0
-function nextId() {
-  return id++
-}
-
-// 空函数
-function noop() {}
-
-// 订阅者
-function subscribe(parent,child,onfulFilled,onReject) {
-  var _subscribers = parent._subscribers;
-  var length = _subscribers.length;
-  
-  _subscribers[length] = child
-  _subscribers[length + FULFILLED] = onfulFilled
-  _subscribers[length + REJECTED] = onReject
-}
-// 发布者
-function publish(promise) {
-  
-}
-// 宏任务 微任务，尽快执行
-function asap(publish,value) {
-  setTimeout(function() {
-    publish()
+  setTimeout(()=>{
+    promise._result = value
   },0)
+}
+function initialize(promise,excutor) {
+  excutor(function(value) {},function(reson) {})
 }

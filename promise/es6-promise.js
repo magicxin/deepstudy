@@ -170,8 +170,8 @@ function then(onFulfillment, onRejection) {
 
   var _state = parent._state;
 
-
   if (_state) {
+//  debugger
     var callback = arguments[_state - 1];
     asap(function () {
       return invokeCallback(_state, child, callback, parent._result);
@@ -292,6 +292,8 @@ function handleForeignThenable(promise, thenable, then$$1) {
 }
 
 function handleOwnThenable(promise, thenable) {
+  console.log(promise)
+  console.log(thenable)
   if (thenable._state === FULFILLED) {
     fulfill(promise, thenable._result);
   } else if (thenable._state === REJECTED) {
