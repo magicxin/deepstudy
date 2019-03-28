@@ -65,15 +65,18 @@
 
 var getName = function() {
         return new MyPromise((resolve,reject)=>{
-          setTimeout(()=>{
-            resolve({
+//        setTimeout(()=>{
+//          resolve({
+//            name:'magix'
+//          })
+//        },2000)
+resolve({
               name:'magix'
             })
-          },2000)
         })
       }
       getName().then(res=>{
-        console.log(res.name)
+        console.log(res)
       })
 	  </script>
 	</body>

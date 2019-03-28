@@ -160,6 +160,7 @@ if (isNode) {
 }
 
 function then(onFulfillment, onRejection) {
+  console.log('then')
   var parent = this;
 
   var child = new this.constructor(noop);
@@ -174,6 +175,7 @@ function then(onFulfillment, onRejection) {
 //  debugger
     var callback = arguments[_state - 1];
     asap(function () {
+//    debugger
       return invokeCallback(_state, child, callback, parent._result);
     });
   } else {
@@ -326,6 +328,7 @@ function handleMaybeThenable(promise, maybeThenable, then$$1) {
 }
 
 function resolve(promise, value) {
+  console.log(value)
   if (promise === value) {
     reject(promise, selfFulfillment());
   } else if (objectOrFunction(value)) {

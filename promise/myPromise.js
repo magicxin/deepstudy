@@ -41,26 +41,62 @@ function asap() {
 
 // 执行传入的参数
 var PENDING = void 0
-var FULFILLED = void 1
-var REJECTED = void 2
+var FULFILLED = 1
+var REJECTED = 2
 
 function MyPromise(excutor) {
   this._state = this._result = void 0
-  excutor(function(value) {
-    resolve(this,value)
-  },function(reson) {})
+  this._subscribers = []
+// 异步时会报错，因为当前还不存在 excutor 方法
+//excutor((value) => {
+//  resolve(this,value)
+//},(reson) => {})
+
+// 通过 noop 判断是否是 child
+  if(noop !== excutor) {
+    initialize(this,excutor)
+  }
+}
+// then 方法 需要包含 三个状态 返回 promise 对象
+MyPromise.prototype.then = function(onfulfilled,onrejected) {
+  var _state = this._state
+  // 初始化 excutor 防止实例化时错误引用
+  var child = new this.constructor(noop)
+    if(_state) {
+      onfulfilled(this._result)
+    }else {
+      subscribe(this,child,onfulfilled,onrejected)
+    }
+  // 返回一个promise 保证链式调用
+  return child
 }
 
-MyPromise.prototype.then = function(onfulfilled,onrejected) {
-  console.log(this)
-  onfulfilled(this._result)
+// 初始化
+function initialize(promise,excutor) {
+  excutor((value) => {
+    resolve(promise,value)
+  },(reson) => {})
 }
 
 function resolve(promise,value) {
-  setTimeout(()=>{
-    promise._result = value
-  },0)
+  // 保证 fulfilled 状态不可变
+  if (promise._state !== PENDING) {
+    return;
+  }
+  promise._result = value;
+  promise._state = FULFILLED;
+  if (promise._subscribers.length !== 0) {
+    asap(publish, promise);
+  }
 }
-function initialize(promise,excutor) {
-  excutor(function(value) {},function(reson) {})
+
+// 发布者 需要通知订阅
+function publish() {
+  
 }
+// 订阅者，需要将事件加入队列
+function subscribe(parent,child,onfulfilled,onrejected) {
+    
+}
+// 
+function noop() {}
