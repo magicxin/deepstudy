@@ -1,0 +1,252 @@
+
+/*祖玛小游戏相信很多人玩过,
+    今天我尝试在html5的画布上尝试用js写了一个小游戏,
+    开过过程的感悟是:
+    遇到一堆代码的时候,应该首先得出一个整体的框架
+    然后根据这个粗略的框架进行分块开发
+    即使刚开始的时候毫无头绪
+    也要即刻动手
+    昨天在看jQuery源码的时候
+    看着8千行的代码
+    如果硬着头皮从第一行开始看
+    保证过不了多久便放弃了
+    正确的做法是
+    从刚开始通读全文划分功能块
+    先从简单的或者跟现有知识相关联的入手
+    然后各个击破
+    在每一个板块集中全部精力攻克
+    不想其他的模块或者是整体
+    这应该是模块化设计的东西吧
+    这才是真理..........嘿嘿 */
+ 
+ 
+ 
+<!DOCTYPE html>
+    
+  
+ 
+<html>
+  <head>
+    <meta charset="UTF-8">
+    
+    <title></title>
+    <style type="text/css">
+    *{margin: 0; padding: 0;}
+    body{background: black;}
+    #div1{background:white; width: 600px; margin: 20px auto;}
+    </style>
+    <script type="text/javascript">
+    window.onload=function(){
+      //加载画布
+      var oC=document.getElementById('c1');
+      var oGc=oC.getContext('2d');  //有这句话才能在画布上写东西
+      var i=0;
+      var iRotate=0; //青蛙旋转速度
+      
+      var yImg=new Image();  //加载青蛙
+      
+      yImg.src='img/person.png';
+      yImg.onload=function(){
+      
+      setInterval(function(){  //外围小球定时器
+      oGc.clearRect(0,0,oC.width,oC.height);
+      //每隔30ms画一个背景+小球
+      oGc.beginPath();
+      oGc.arc(300,200,200,-90*Math.PI/180,180*Math.PI/180,false);
+      oGc.stroke();
+      
+      oGc.beginPath();
+      oGc.arc(250,200,150,180*Math.PI/180,360*Math.PI/180,false);
+      oGc.stroke();
+       
+      oGc.beginPath();
+      oGc.arc(400,200,20,0*Math.PI/180,360*Math.PI/180,false);
+      oGc.stroke();
+        
+      oGc.beginPath();
+      oGc.arc(i++,i++,20,0*Math.PI/180,360*Math.PI/180,false);
+      oGc.stroke();
+      //画小球
+      for(var i=0;i<ball.length;i++){
+        
+        oGc.beginPath();
+        oGc,moveTo(ball[i].x,ball[i].y);  //将画笔移动到开始位置,准备画小球
+        oGc.arc(ball[i].x,ball[i].y,20,0*Math.PI/180,360*Math.PI/180,false); //0度从右边中间开始
+        oGc.fill();  //填充颜色,默认是黑色
+      }
+      
+      //青蛙旋转
+      oGc.save();
+      oGc.translate(300,200);
+      oGc.rotate(iRotate); //通过iRotate控制青蛙跟着鼠标转
+      oGc.translate(-40,-40);
+ 
+      oGc.drawImage(yImg,0,0);
+      oGc.restore(); 
+      //吐出来红色小球
+      for(var i=0;i<bullet.length;i++){
+        oGc.save();
+        oGc.fillStyle='red';
+        oGc.beginPath();     //每次画图,beginPath()和restore()是必须
+        oGc,moveTo(bullet[i].x,bullet[i].y);
+        oGc.arc(bullet[i].x,bullet[i].y,20,0*Math.PI/180,360*Math.PI/180,false);
+        oGc.fill();
+        oGc.restore(); 
+      }
+      
+      
+      },1000/60);
+      setInterval(function(){
+        
+        for(var i=0;i<ball.length;i++){
+          ball[i].num++;  //num为角度
+          
+           //当小球运动到左边中心的时候需要改变方向,因为两个圆的半径不一样
+          if(ball[i].num==270){
+            ball[i].r=150; 
+            ball[i].startX=250;
+            ball[i].startY=50;
+          }
+          if(ball[i].num==270+180){
+            window.location.reload(); //当有小球到达终点的时候,有细节苏,重新加载
+          alert('游戏结束');
+          }
+          ball[i].x=Math.sin(ball[i].num*Math.PI/180)*ball[i].r+ball[i].startX;
+          ball[i].y=ball[i].r-Math.cos(ball[i].num*Math.PI/180)*ball[i].r+ball[i].startY;
+        }
+          for(var i=0;i<bullet.length;i++){
+          bullet[i].x=bullet[i].x+bullet[i].sX;
+          bullet[i].y=bullet[i].y+bullet[i].sY;
+          
+          
+          }
+          for(var i=0;i<bullet.length;i++){
+          for(var j=0;j<ball.length;j++){
+          if(pz(bullet[i].x,bullet[i].y,ball[j].x,ball[j].y)){
+            
+            bullet.splice(i,1);  //两个小球碰撞后通过删除数组使小球消失
+            ball.splice(j,1);
+            break;
+          
+          }
+          
+          
+          
+          }
+          
+          
+          
+          }
+      
+      },30);
+      
+      var ball=[];
+      
+      
+      setInterval(function(){
+        //通过数组保存小球运动数据可以方便后期拓展
+        ball.push(
+          {
+            x:300,
+            y:0,
+            r:200,
+            num:0,
+            startX:300,
+            startY:0
+             
+            
+          }
+        )
+        
+      },350);
+      
+      //鼠标移动,中心图片跟着变化
+      oC.onmousemove=function(ev){
+      var ev=ev||window.event; //鼠标兼容性设置
+      var x=ev.clientX-oC.offsetLeft;
+      var y=ev.clientY-oC.offsetTop;
+    
+      var a=x-300;
+      var b=y-200;
+      
+      var c=Math.sqrt(a*a+b*b);
+    
+ 
+        //已下是设置青蛙跟着鼠标旋转
+        //高中数学....
+      
+      if(a>0 && b>0){
+        iRotate=Math.asin(b/c)+90*Math.PI/180;
+      
+      }else if(a>0){
+        iRotate=Math.asin(a/c);
+      }
+      if(a<0 && b>0){
+      iRotate=-(Math.asin(b/c)+90*Math.PI/180);
+      
+      
+      }else if(a<0){
+      iRotate=Math.asin(a/c);
+      }
+      
+      };
+      //吐出来的小球
+      var bullet=[];
+      oC.onmousedown=function(ev){
+      var ev=ev||window.event;
+      var x=ev.clientX-oC.offsetLeft;
+      var y=ev.clientY-oC.offsetTop;
+    
+      var a=x-300;
+      var b=y-200;
+      
+      var c=Math.sqrt(a*a+b*b);
+      
+      var speed=5;  //吐出来小球小球运动素的
+      var sX=speed*a/c;
+      var sY=speed*b/c;
+      bullet.push(
+      {
+      x:300,
+      y:200,
+      sX:sX,
+      sY:sY
+        
+      
+      });
+        
+      }
+      };
+      //碰撞检测函数
+      function pz(x1,y1,x2,y2){
+      var a=x1-x2;
+      var b=y1-y2;
+      var c=Math.sqrt(a*a+b*b);
+      if(c<40){
+          return 40;
+          
+      }else{
+          return false;
+      }
+      
+      
+      
+      }
+      
+      
+      
+    }
+    
+ 
+    </script>
+    
+  </head>
+  <body>
+  <div id="div1">
+  <canvas id="c1" width="600" height="600"></canvas>
+    
+  </div>
+        
+ 
+  </body>
+</html>

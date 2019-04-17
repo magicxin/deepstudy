@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+		<title></title>
+		<style>
+		  
+		</style>
+	</head>
+	<body>
+	  <script>
+	    var httpRequest = null
+      if(window.XMLHttpRequest) { // Mozilla, Safari, IE7+ ...
+        httpRequest = new XMLHttpRequest()
+      }else if(window.ActiveObject) { // IE 6 and older
+        httpRequest = new ActiveObject("Microsoft.XMLHTTP")
+      }
+      httpRequest.onreadystatechange = function(a){
+        // Process the server response here.
+//      0 UNSENT  Client has been created. open() not called yet.
+//      1 OPENED  open() has been called.
+//      2 HEADERS_RECEIVED  send() has been called, and headers and status are available.
+//      3 LOADING Downloading; responseText holds partial data.
+//      4 DONE  The operation is complete.
+        console.log(XMLHttpRequest.DONE)
+      };
+      httpRequest.open('GET', 'http://magix.xyz:3000/community_manage/house/list', true);
+      httpRequest.send(); 
+	  </script>
+	</body>
+</html>

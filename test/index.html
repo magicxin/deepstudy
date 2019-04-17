@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+		<title>test</title>
+		<style>
+		  
+		</style>
+	</head>
+	<body>
+	  
+	  <script>
+	    let arr = [{name:'a'},{name:'b'},{name:'c'},{name:'d'},{name:'e'}]
+	    arr.forEach((item,index,a) => {
+	      console.log(arr === a)
+	      console.log(this)
+	    },new Object())
+	    
+	    let arr2 = Array.apply(null, new Array(10))
+        arr2.forEach(item=>{
+          console.log(item) // undefined
+        })
+      let arr1 = Array(10)
+      console.log(arr1)
+//    arr.forEach((item,index,a) => {
+//      arr.push({name:'f'})
+//      console.log(a)
+//    },new Object())
+      arr.forEach((item,index,a) => {
+        if(item.name === 'a') return
+//      console.log(item)
+      },new Object())
+      arr.forEach((item,index,a) => {
+        if(item.name === 'b') arr.shift()
+        console.log(item);
+      },new Object())
+      
+      function foo(obj) {
+        with(obj) {
+          a = 2;
+        }
+      }
+      var o1 = {
+        a: 3
+      };
+      var o2 = {
+        b: 3
+      };
+      foo(o1);
+      console.log(o1.a);
+      foo(o2);
+      console.log(o2.a);
+      console.log(a);
+	  </script>
+    
+	</body>
+</html>
